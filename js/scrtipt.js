@@ -27,7 +27,6 @@ const game = function checkGuess(){
         alert(`Загаданное число больше, число попыток осталось ${count - attempt}`);
         attempt++;
         start();
-        
       } else if (guessNum > randomNum){
         alert(`Загаданное число меньше, число попыток осталось ${count - attempt}`);
         attempt++;
