@@ -1,20 +1,141 @@
-'use strict'
-const arr = ["245", "475", "3577", "4597", "1268", "7813", "2265"];
+'use strict';
 
-arr.forEach((e) => {
-  if (e[0] == '2' || e[0] == '4') {
-    console.log(e);
+const isNumber = function(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+const game = function checkGuess(){
+  let randomNum = Math.floor(Math.random() * 100);
+
+  console.log(randomNum);
+  let attempt = 1,
+      count = 10;
+
+  return function start() {
+    let guess = prompt("Угадай число от 1 до 100", "Введи число");
+    console.log(guess); 
+    !isNumber(guess);
+    let guessNum = Number(guess);
+
+    if(attempt <= count){
+      if(guessNum === randomNum){
+        let game = confirm("Поздравляю, Вы угадали. Хотели бы сыграть еще?");
+        if(game){
+          location.reload();
+        } else{};
+      } else if (guessNum < randomNum){
+        alert(`Загаданное число больше, число попыток осталось ${count - attempt}`);
+        attempt++;
+        start();
+        
+      } else if (guessNum > randomNum){
+        alert(`Загаданное число меньше, число попыток осталось ${count - attempt}`);
+        attempt++;
+        start();
+      };
+      attempt++;
+    }else{
+        let game = confirm("Попытки закончились. Хотели бы сыграть еще?");
+        if(game){
+          location.reload();
+        } else{};
+    };
+  };
+};
+
+const startGame = game();
+startGame();
+console.dir(startGame);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+
+
+
+
+let randomNum = Math.floor(Math.random() * 100),
+    num;
+
+console.log(randomNum);
+
+const check = function checkGuess(randomNum) {
+ 
+  function guess (num) {
+    do{
+        num = prompt("Угадай число от 1 до 100", "Введи число");
+        console.log(num);
+    }
+    while (!isNumber(num));
+    return Number(num)
+  };
+
+  guess(num)
+  let attempt = 1
+  if(attempt <= 11){
+    if(num === randomNum){
+      let game = confirm("Поздравляю, Вы угадали. Хотели бы сыграть еще?");
+      if(game){
+        location.reload();
+      } else {};
+    } else if (num < randomNum){
+      alert(`Загаданное число больше, число попыток осталось ${attempt}`);
+      attempt++;
+      
+      
+    } else if (num > randomNum) {
+      alert(`Загаданное число меньше, число попыток осталось ${attempt}`);
+      attempt++;
+      
+      
+    } else {
+      let game = confirm("Попытки закончились. Хотели бы сыграть еще?");
+      if(game){
+        location.reload();
+      } else {};
+    }
   }
-});
- for (let i = 0; i < arr.length; i++) {  
-  if (arr[i][0] === '2' || arr[i][0] == '4' ) {
-    console.log(arr[i]);
-  }
-}; 
+};
+check(randomNum);
+const start = function(randomNum){
+  
+  function guess(num) {
+    do{
+        num = prompt("Угадай число от 1 до 100", "Введи число");
+        console.log(num);
+    }
+    while (!isNumber(num));
+    return Number(num)
+  };
 
-const arr1 = ["2", "3", "5", "7", "11", "13", "17", "19", "23", "29", "31", "37", 
-"41", "43", "47", "53", "59", "61", "67", "71", "73", "79", "83", "89", "97"];
+  check(guess(num), randomNum);
+};
 
-for (let i = 0; i < arr1.length; i++) {  
-    console.log(`Делители ${arr1[i]} числа: 1 и ${arr1[i]}`);
-  }; 
+start(randomNum);
+
+
+ */
